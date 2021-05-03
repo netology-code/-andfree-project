@@ -10,6 +10,7 @@ import android.widget.ProgressBar
 import android.widget.SimpleAdapter
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.textfield.TextInputEditText
+import com.wolfram.alpha.WAEngine
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,11 +29,14 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var progressBar: ProgressBar
 
+    lateinit var waEngine: WAEngine
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initViews()
+        initWolframEngine()
     }
 
     private fun initViews() {
@@ -52,6 +56,12 @@ class MainActivity : AppCompatActivity() {
         podsList.adapter = podsAdapter
 
         progressBar = findViewById<ProgressBar>(R.id.progress_bar)
+    }
+
+    fun initWolframEngine() {
+        waEngine = WAEngine()
+        waEngine.appID = "DEMO"
+        waEngine.addFormat("plaintext")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
