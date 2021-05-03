@@ -2,6 +2,7 @@ package ru.netology.netologyvoiceassistant
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -19,6 +20,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.*
+import kotlin.collections.HashMap
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,12 +37,15 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var waEngine: WAEngine
 
+    lateinit var textToSpeech: TextToSpeech
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initViews()
         initWolframEngine()
+        initTts()
     }
 
     private fun initViews() {
@@ -75,6 +81,16 @@ class MainActivity : AppCompatActivity() {
         waEngine = WAEngine()
         waEngine.appID = "DEMO"
         waEngine.addFormat("plaintext")
+    }
+
+    fun initTts() {
+        textToSpeech = TextToSpeech(this) { code ->
+            if (code != TextToSpeech.SUCCESS) {
+                Log.e(TAG, "TTS error code: $code")
+                showErrorDialog(getString(R.string.error_tts_is_not_ready))
+            }
+        }
+        textToSpeech.language = Locale.US
     }
 
     fun showErrorDialog(error: String) {
