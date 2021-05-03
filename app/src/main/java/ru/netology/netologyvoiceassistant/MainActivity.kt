@@ -5,11 +5,28 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ListView
+import android.widget.ProgressBar
+import android.widget.SimpleAdapter
 import androidx.appcompat.widget.Toolbar
+import com.google.android.material.textfield.TextInputEditText
 
 class MainActivity : AppCompatActivity() {
 
     val TAG = "MainActivity"
+
+    lateinit var requestInput: TextInputEditText
+
+    lateinit var podsAdapter: SimpleAdapter
+
+    val pods = mutableListOf<HashMap<String, String>>(
+        HashMap<String, String>().apply {
+            put("Title", "Test title")
+            put("Content", "Test content")
+        }
+    )
+
+    lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +38,20 @@ class MainActivity : AppCompatActivity() {
     private fun initViews() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+        requestInput = findViewById<TextInputEditText>(R.id.text_input_edit)
+
+        val podsList = findViewById<ListView>(R.id.pods_list)
+        podsAdapter = SimpleAdapter(
+            applicationContext,
+            pods,
+            R.layout.item_pod,
+            arrayOf("Title", "Content"),
+            intArrayOf(R.id.title, R.id.content)
+        )
+        podsList.adapter = podsAdapter
+
+        progressBar = findViewById<ProgressBar>(R.id.progress_bar)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
