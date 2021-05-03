@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
 
     fun initWolframEngine() {
         waEngine = WAEngine()
-        waEngine.appID = "DEMO"
+        waEngine.appID = "5XAUXY-AHEX64Q37J"
         waEngine.addFormat("plaintext")
     }
 
