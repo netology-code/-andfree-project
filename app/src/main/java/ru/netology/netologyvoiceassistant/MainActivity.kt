@@ -73,6 +73,11 @@ class MainActivity : AppCompatActivity() {
             intArrayOf(R.id.title, R.id.content)
         )
         podsList.adapter = podsAdapter
+        podsList.setOnItemClickListener { _, _, position, _ ->
+            val title = pods[position]["Title"]
+            val content = pods[position]["Content"]
+            textToSpeech.speak(content, TextToSpeech.QUEUE_FLUSH, null, title)
+        }
 
         progressBar = findViewById<ProgressBar>(R.id.progress_bar)
     }
@@ -157,7 +162,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_stop -> {
-                Log.d(TAG, "action_stop")
+                textToSpeech.stop()
                 return true
             }
             R.id.action_clear -> {
