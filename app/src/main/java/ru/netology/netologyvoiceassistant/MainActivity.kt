@@ -9,6 +9,7 @@ import android.widget.ListView
 import android.widget.ProgressBar
 import android.widget.SimpleAdapter
 import androidx.appcompat.widget.Toolbar
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.wolfram.alpha.WAEngine
 
@@ -62,6 +63,15 @@ class MainActivity : AppCompatActivity() {
         waEngine = WAEngine()
         waEngine.appID = "DEMO"
         waEngine.addFormat("plaintext")
+    }
+
+    fun showErrorDialog(error: String) {
+        Snackbar.make(findViewById(android.R.id.content), error, Snackbar.LENGTH_INDEFINITE).apply {
+            setAction(android.R.string.ok) {
+                dismiss()
+            }
+            show()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
