@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Netology Voice Assistant</string>
+
+    <string name="action_stop_title">Stop</string>
+    <string name="action_clear_title">Clear</string>
+
+    <string name="request_hint">What are you interested in?</string>
+
+    <string name="error_do_not_understand">Sorry, I don\'t understand, can you rephrase?</string>
+    <string name="error_voice_recognition_unavailable">Voice recognition unavailable</string>
+    <string name="error_something_went_wrong">Something went wrong</string>
+    <string name="error_tts_is_not_ready">TTS is not ready</string>
 </resources>
