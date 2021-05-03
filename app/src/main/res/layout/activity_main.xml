@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:background="?colorPrimary"
         app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/toolbar_menu"
         app:title="@string/app_name"
         app:titleTextColor="?colorOnPrimary" />
 
