@@ -46,4 +46,5 @@ dependencies {
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3'
 
+    androidTestImplementation('androidx.test.espresso:espresso-intents:3.3.0')
 }
